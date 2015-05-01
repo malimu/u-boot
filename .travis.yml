@@ -14,5 +14,5 @@ install:
   - sudo apt-get install -qq build-essential gcc-arm-linux-gnueabihf
 
 script:
-  - make CROSS_COMPILE=arm-linux-gnueabihf- A20-OLinuXino-Micro_config
+  - make CROSS_COMPILE=arm-linux-gnueabihf- A20-OLinuXino_MICRO_config
   - make -j CROSS_COMPILE=arm-linux-gnueabihf-
