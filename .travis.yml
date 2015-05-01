@@ -16,3 +16,13 @@ install:
 script:
   - make CROSS_COMPILE=arm-linux-gnueabihf- A20-OLinuXino_MICRO_config
   - make -j CROSS_COMPILE=arm-linux-gnueabihf-
+
+addons:
+  artifacts:
+    paths:
+      - spl/sunxi-spl.bin
+      - u-boot.bin
+      - u-boot.srec
+      - u-boot.img
+      - u-boot-sunxi-with-spl.bin
+    debug: true
