@@ -5,6 +5,11 @@ language: c
 cache:
  - apt
 
+# we're building only stuff pushed into "travis" branch
+branches:
+  only:
+    - travis
+
 install:
  - sudo apt-get install -qq build-essential gcc-arm-linux-gnueabihf
 
