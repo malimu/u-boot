@@ -32,3 +32,4 @@ addons:
       - u-boot.img
       - u-boot-sunxi-with-spl.bin
     debug: true
+    target-paths: commits/watermelon/u-boot/$TRAVIS_JOB_NUMBER
