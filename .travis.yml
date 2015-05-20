@@ -15,10 +15,9 @@ branches:
 before_install:
   - export WB_PROJECT="watermelon"
   - export WB_REPO="u-boot"
-  - export ARTIFACTS_TARGET_PATH="commits/$WB_PROJECT/$WB_REPO/$TRAVIS_JOB_NUMBER"
-  - if [ -n "$TRAVIS_TAG" ]; then export ARTIFACTS_TARGET_PATH="stable/$WB_PROJECT/$WB_REPO/$TRAVIS_TAG"; fi
-  - 'echo "Upload path=$ARTIFACTS_TARGET_PATH; travis tag=$TRAVIS_TAG"'
-  - export ARTIFACTS_MAX_SIZE=4194304000
+  - export ARTIFACTS_TARGET_PATHS="commits/$WB_PROJECT/$WB_REPO/$TRAVIS_JOB_NUMBER"
+  - if [ -n "$TRAVIS_TAG" ]; then export ARTIFACTS_TARGET_PATHS="stable/$WB_PROJECT/$WB_REPO/$TRAVIS_TAG"; fi
+  - 'echo "Upload path=$ARTIFACTS_TARGET_PATHS; travis tag=$TRAVIS_TAG"'
 
 install:
   - sudo apt-get install -qq build-essential gcc-arm-linux-gnueabihf bc
@@ -42,3 +41,4 @@ addons:
       - u-boot.img
       - u-boot-sunxi-with-spl.bin
     debug: true
+    max-size: 262144000
