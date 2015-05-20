@@ -11,6 +11,14 @@ branches:
     - travis
     - /^wb-.*$/
 
+# Identify the build and construct artifact upload path
+before_install:
+  - export WB_PROJECT="watermelon"
+  - export WB_REPO="u-boot"
+  - export ARTIFACTS_TARGET_PATHS="commits/$WB_PROJECT/$WB_REPO/$TRAVIS_JOB_NUMBER"
+  - if [ -n "$TRAVIS_TAG" ]; then export ARTIFACTS_TARGET_PATHS="stable/$WB_PROJECT/$WB_REPO/$TRAVIS_TAG"; fi
+  - 'echo "Upload path=$ARTIFACTS_TARGET_PATH; travis tag=$TRAVIS_TAG"'
+
 install:
   - sudo apt-get install -qq build-essential gcc-arm-linux-gnueabihf bc
 
@@ -24,13 +32,6 @@ script:
   - make CROSS_COMPILE=arm-linux-gnueabihf- A20-OLinuXino_MICRO_config
   - make -j CROSS_COMPILE=arm-linux-gnueabihf-
 
-after_success:
-  - export WB_PROJECT="watermelon"
-  - export WB_REPO="u-boot"
-  - export ARTIFACTS_TARGET_PATHS="commits/$WB_PROJECT/$WB_REPO/$TRAVIS_JOB_NUMBER"
-  - if [ -n "$TRAVIS_TAG" ]; then export ARTIFACTS_TARGET_PATHS="stable/$WB_PROJECT/$WB_REPO/$TRAVIS_TAG"; fi
-  - echo "Upload target path: $ARTIFACTS_TARGET_PATH"
-
 addons:
   artifacts:
     paths:
@@ -40,4 +41,4 @@ addons:
       - u-boot.img
       - u-boot-sunxi-with-spl.bin
     debug: true
-    max-size: 4194304000
+    max_size: 4194304000
