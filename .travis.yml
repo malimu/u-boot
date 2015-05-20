@@ -9,6 +9,7 @@ cache:
 branches:
   only:
     - travis
+    - /^wb-.*$/
 
 install:
   - sudo apt-get install -qq build-essential gcc-arm-linux-gnueabihf bc
