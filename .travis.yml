@@ -23,7 +23,7 @@ script:
   - make CROSS_COMPILE=arm-linux-gnueabihf- A20-OLinuXino_MICRO_config
   - make -j CROSS_COMPILE=arm-linux-gnueabihf-
 
-after-success:
+after_success:
   - export WB_PROJECT="watermelon"
   - export WB_REPO="u-boot"
   - export ARTIFACTS_TARGET_PATHS="commits/$WB_PROJECT/$WB_REPO/$TRAVIS_JOB_NUMBER"
