@@ -18,6 +18,8 @@ before_install:
   - export ARTIFACTS_TARGET_PATHS="commits/$WB_PROJECT/$WB_REPO/$TRAVIS_JOB_NUMBER"
   - if [ -n "$TRAVIS_TAG" ]; then export ARTIFACTS_TARGET_PATHS="stable/$WB_PROJECT/$WB_REPO/$TRAVIS_TAG"; fi
   - 'echo "Upload path=$ARTIFACTS_TARGET_PATHS; travis tag=$TRAVIS_TAG"'
+  - 'echo "$ARTIFACTS_TARGET_PATHS" >__target_path'
+  - cat __target_path
 
 install:
   - sudo apt-get install -qq build-essential gcc-arm-linux-gnueabihf bc
@@ -41,4 +43,5 @@ addons:
       - u-boot.img
       - u-boot-sunxi-with-spl.bin
     debug: true
+    target-paths: $(cat __target_path)
     max-size: 262144000
