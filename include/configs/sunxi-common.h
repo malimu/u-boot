@@ -66,6 +66,9 @@
 # define CONFIG_SYS_NS16550_COM5		SUNXI_R_UART_BASE
 #endif
 
+/* CPU */
+#define CONFIG_SYS_CACHELINE_SIZE	64
+
 /* DRAM Base */
 #define CONFIG_SYS_SDRAM_BASE		0x40000000
 #define CONFIG_SYS_INIT_RAM_ADDR	0x0
@@ -98,6 +101,7 @@
 #define CONFIG_SETUP_MEMORY_TAGS
 #define CONFIG_CMDLINE_TAG
 #define CONFIG_INITRD_TAG
+#define CONFIG_SERIAL_TAG
 
 /* mmc config */
 #if !defined(CONFIG_UART0_PORT_F)
@@ -240,6 +244,8 @@ extern int soft_i2c_gpio_scl;
 #endif
 #elif CONFIG_CONS_INDEX == 2 && defined(CONFIG_MACH_SUN5I)
 #define OF_STDOUT_PATH		"/soc@01c00000/serial@01c28400:115200"
+#elif CONFIG_CONS_INDEX == 3 && defined(CONFIG_MACH_SUN8I)
+#define OF_STDOUT_PATH		"/soc@01c00000/serial@01c28800:115200"
 #elif CONFIG_CONS_INDEX == 5 && defined(CONFIG_MACH_SUN8I)
 #define OF_STDOUT_PATH		"/soc@01c00000/serial@01f02800:115200"
 #else
@@ -335,7 +341,7 @@ extern int soft_i2c_gpio_scl;
 
 /* Enable pre-console buffer to get complete log on the VGA console */
 #define CONFIG_PRE_CONSOLE_BUFFER
-#define CONFIG_PRE_CON_BUF_SZ		(1024 * 1024)
+#define CONFIG_PRE_CON_BUF_SZ		4096 /* Aprox 2 80*25 screens */
 /* Use the room between the end of bootm_size and the framebuffer */
 #define CONFIG_PRE_CON_BUF_ADDR		0x4f000000
 
