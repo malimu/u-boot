@@ -15,9 +15,18 @@ branches:
 before_install:
   - export WB_PROJECT="watermelon"
   - export WB_REPO="u-boot"
+
+  # Default target path: regular commit
   - export ARTIFACTS_TARGET_PATHS="commits/$WB_PROJECT/$WB_REPO/$TRAVIS_JOB_NUMBER"
+  # Stable target path: tagged commit
   - if [ -n "$TRAVIS_TAG" ]; then export ARTIFACTS_TARGET_PATHS="stable/$WB_PROJECT/$WB_REPO/$TRAVIS_TAG"; fi
-  - 'echo "Upload path=$ARTIFACTS_TARGET_PATHS; travis tag=$TRAVIS_TAG"'
+  # Nightly target path: commit with specific message
+  - 'export TRAVIS_COMMIT_MSG="$(git log --format=%B -n 1)"'
+  - NIGHTLY_BUILD_DATE=$(echo "$TRAVIS_COMMIT_MSG" | sed -ne '/^Nightly build [0-9]*-[0-9]*-[0-9]*$/ { s/^Nightly build //; p }')
+  - if [ -n "$NIGHTLY_BUILD_DATE" ]; then export ARTIFACTS_TARGET_PATHS="nightly/$WB_PROJECT/$WB_REPO/$NIGHTLY_BUILD_DATE"; fi
+
+  # Memorize upload path
+  - 'echo "target_paths=$ARTIFACTS_TARGET_PATHS; tag=$TRAVIS_TAG; commit_msg=$TRAVIS_COMMIT_MSG"'
   - 'echo "$ARTIFACTS_TARGET_PATHS" >__target_path'
   - cat __target_path
 
