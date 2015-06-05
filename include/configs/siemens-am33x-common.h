@@ -290,7 +290,6 @@
 /* Unsupported features */
 #undef CONFIG_USE_IRQ
 
-#define CONFIG_CMD_NET
 #define CONFIG_CMD_DHCP
 #define CONFIG_CMD_PING
 #define CONFIG_DRIVER_TI_CPSW
@@ -305,7 +304,6 @@
 #define CONFIG_BOOTP_GATEWAY
 #define CONFIG_BOOTP_SUBNETMASK
 #define CONFIG_NET_RETRY_COUNT         10
-#define CONFIG_NET_MULTI
 
 #define CONFIG_NAND
 /* NAND support */

@@ -18,7 +18,6 @@
 
 /* Ethernet driver configuration */
 #define CONFIG_MII
-#define CONFIG_NET_MULTI
 #define CONFIG_PHYLIB
 #define CONFIG_PHY_RESET_DELAY			10000		/* in usec */
 #define CONFIG_PHY_GIGE			/* Include GbE speed/duplex detection */
@@ -109,7 +108,6 @@
 #define CONFIG_CMD_MEMORY
 #define CONFIG_CMD_RUN
 #define CONFIG_CMD_SAVES
-#define CONFIG_CMD_NET
 #define CONFIG_CMD_MII
 #define CONFIG_CMD_PING
 #define CONFIG_CMD_DHCP
