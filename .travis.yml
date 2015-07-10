@@ -30,11 +30,16 @@ before_install:
   - 'echo "$ARTIFACTS_TARGET_PATHS" >__target_path'
   - cat __target_path
 
-before_script:
+install:
+  # Set up fresh dtc
+  git clone --depth=1 https://git.kernel.org/pub/scm/utils/dtc/dtc.git /tmp/dtc
+  make -j -C /tmp/dtc
+
   # Set up proper symlinks
   - mkdir -p "$HOME/bin"
   - ln -s /usr/bin/arm-linux-gnueabihf-gcc-4.6 "$HOME/bin/arm-linux-gnueabihf-gcc"
-  - export PATH="$HOME/bin:$PATH"
+
+  - export PATH="$HOME/bin:/tmp/dtc:$PATH"
 
 script:
   - make CROSS_COMPILE=arm-linux-gnueabihf- A20-OLinuXino_MICRO_config
