@@ -2,8 +2,8 @@
 
 language: c
 
-cache:
-  - apt
+# Use new container-based infrastructure
+sudo: false
 
 # we're building only stuff pushed into "travis" branch
 branches:
@@ -30,20 +30,14 @@ before_install:
   - 'echo "$ARTIFACTS_TARGET_PATHS" >__target_path'
   - cat __target_path
 
-install:
-  - sudo apt-get install -qq build-essential gcc-arm-linux-gnueabihf bc
-
-  # add some Ubuntu Trusty packages - we require device-tree-compiler >= 1.4
-  - sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 3B4FE6ACC0B21F32
-  - sudo sh -c "echo 'deb http://us.archive.ubuntu.com/ubuntu/ trusty main restricted' >/etc/apt/sources.list.d/trusty.list"
-  - sudo apt-get update -q
-  - sudo apt-get install -qq device-tree-compiler
-
 script:
   - make CROSS_COMPILE=arm-linux-gnueabihf- A20-OLinuXino_MICRO_config
   - make -j CROSS_COMPILE=arm-linux-gnueabihf-
 
 addons:
+  apt:
+    sources: trusty
+    packages: build-essential gcc-arm-linux-gnueabihf bc
   artifacts:
     paths:
       - spl/sunxi-spl.bin
