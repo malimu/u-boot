@@ -33,7 +33,7 @@ before_install:
 before_script:
   # Set up proper symlinks
   - mkdir -p "$HOME/bin"
-  - ln -s "$HOME/bin/arm-linux-gnueabihf-gcc" /usr/bin/arm-linux-gnueabihf-gcc-4.6
+  - ln -s /usr/bin/arm-linux-gnueabihf-gcc-4.6 "$HOME/bin/arm-linux-gnueabihf-gcc"
   - export PATH="$HOME/bin:$PATH"
 
 script:
