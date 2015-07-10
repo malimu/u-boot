@@ -39,7 +39,10 @@ addons:
     sources: trusty
     packages:
       - build-essential
-      - gcc-arm-linux-gnueabihf
+      # Unfortunately, "gcc-arm-linux-gnueabihf" is not allowed
+      # directly, so resort to an allowed package with version prefix
+      #- gcc-arm-linux-gnueabihf
+      - gcc-4.6-arm-linux-gnueabihf
       - bc
   artifacts:
     paths:
