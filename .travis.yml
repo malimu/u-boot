@@ -47,7 +47,6 @@ script:
 
 addons:
   apt:
-    sources: trusty
     packages:
       - build-essential
       # Unfortunately, "gcc-arm-linux-gnueabihf" is not allowed
