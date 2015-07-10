@@ -32,8 +32,8 @@ before_install:
 
 install:
   # Set up fresh dtc
-  git clone --depth=1 https://git.kernel.org/pub/scm/utils/dtc/dtc.git /tmp/dtc
-  make -j -C /tmp/dtc
+  - git clone --depth=1 https://git.kernel.org/pub/scm/utils/dtc/dtc.git /tmp/dtc
+  - make -j -C /tmp/dtc
 
   # Set up proper symlinks
   - mkdir -p "$HOME/bin"
