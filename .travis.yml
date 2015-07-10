@@ -37,7 +37,10 @@ script:
 addons:
   apt:
     sources: trusty
-    packages: build-essential gcc-arm-linux-gnueabihf bc
+    packages:
+      - build-essential
+      - gcc-arm-linux-gnueabihf
+      - bc
   artifacts:
     paths:
       - spl/sunxi-spl.bin
