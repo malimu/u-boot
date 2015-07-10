@@ -30,6 +30,12 @@ before_install:
   - 'echo "$ARTIFACTS_TARGET_PATHS" >__target_path'
   - cat __target_path
 
+before_script:
+  # Set up proper symlinks
+  - mkdir -p "$HOME/bin"
+  - ln -s "$HOME/bin/arm-linux-gnueabihf-gcc" /usr/bin/arm-linux-gnueabihf-gcc-4.6
+  - export PATH="$HOME/bin:$PATH"
+
 script:
   - make CROSS_COMPILE=arm-linux-gnueabihf- A20-OLinuXino_MICRO_config
   - make -j CROSS_COMPILE=arm-linux-gnueabihf-
